@@ -30,7 +30,6 @@ import {
   Zap,
   ExternalLink,
 } from "lucide-react";
-import { SiGithub as Github } from "@icons-pack/react-simple-icons";
 
 export default function SinglePagePortfolio() {
   const [lang, setLang] = useState<"id" | "en">("id");
@@ -416,24 +415,6 @@ export default function SinglePagePortfolio() {
               {t.hero.btnDemo}
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
-            <a
-              href="https://github.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto"
-            >
-              <Button
-                size="lg"
-                variant="outline"
-                className={`w-full font-semibold px-8 py-6 rounded-2xl text-base ${isDark
-                  ? "border-slate-700 bg-slate-900/80 hover:bg-slate-800 text-slate-200"
-                  : "border-slate-300 bg-white hover:bg-slate-100 text-slate-800 shadow-sm"
-                  }`}
-              >
-                <Github className="w-5 h-5 mr-2" />
-                {t.hero.btnGithub}
-              </Button>
-            </a>
           </div>
         </div>
       </section>
