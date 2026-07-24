@@ -1,7 +1,12 @@
+# Workflow disabled
+# on:
+#   push:
+#     branches:
+#       - master
+
 on:
-  push:
-    branches:
-      - master
+  workflow_dispatch: # Disabled automatic push trigger; manual trigger only if needed
+
 jobs:
   build-and-upload-to-docker-hub:
     runs-on: ubuntu-latest
