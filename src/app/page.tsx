@@ -29,7 +29,11 @@ import {
   HardDrive,
   Zap,
   ExternalLink,
+  Mail,
+  Linkedin,
+  Send,
 } from "lucide-react";
+import { SiWhatsapp } from "@icons-pack/react-simple-icons";
 
 export default function SinglePagePortfolio() {
   const [lang, setLang] = useState<"id" | "en">("id");
@@ -39,6 +43,11 @@ export default function SinglePagePortfolio() {
 
   // Live App Demo URL (configurable via env variable or default)
   const liveDemoUrl = process.env.NEXT_PUBLIC_DEMO_URL || "https://pelanggaran-saas.indranurwahid.my.id";
+
+  // Contact Links (configurable via env variables or default)
+  const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "fajarnurwahid99@gmail.com";
+  const contactWhatsapp = process.env.NEXT_PUBLIC_CONTACT_WHATSAPP || "https://wa.me/6287743886185";
+  const contactLinkedin = process.env.NEXT_PUBLIC_CONTACT_LINKEDIN || "https://www.linkedin.com/in/indra-fajar-nurwahid-68b30428a";
 
   // Sync dark mode class and document title
   useEffect(() => {
@@ -69,6 +78,7 @@ export default function SinglePagePortfolio() {
       engineering: lang === "id" ? "Teknikal" : "Engineering",
       impact: lang === "id" ? "Dampak" : "Impact",
       screenshots: lang === "id" ? "Showcase Visual" : "Visual Showcase",
+      contact: lang === "id" ? "Kontak" : "Contact",
       tryDemo: lang === "id" ? "Coba Akun Demo" : "Try Live Demo",
     },
     hero: {
@@ -197,6 +207,16 @@ export default function SinglePagePortfolio() {
         : "Select a tab below to inspect APELSI's primary UI interfaces.",
       btnApp: lang === "id" ? "Uji di Aplikasi Live" : "Test in Live App",
     },
+    contact: {
+      tag: lang === "id" ? "7. Hubungi & Kolaborasi" : "7. Contact & Collaboration",
+      title: lang === "id" ? "Tertarik Berkolaborasi atau Mendiskusikan Project?" : "Interested in Working Together or Discussing Architecture?",
+      sub: lang === "id"
+        ? "Apakah Anda mencari Full-Stack & DevOps Engineer untuk tim Anda, atau berminat mendiskusikan arsitektur aplikasi APELSI? Silakan hubungi saya melalui saluran di bawah."
+        : "Looking for a Full-Stack & DevOps Engineer for your engineering team, or interested in discussing APELSI's system design? Reach out to me directly below.",
+      btnEmail: lang === "id" ? "Kirim Email Langsung" : "Send Direct Email",
+      btnWhatsapp: lang === "id" ? "Hubungi via WhatsApp" : "Chat on WhatsApp",
+      btnLinkedin: lang === "id" ? "Profil LinkedIn" : "LinkedIn Profile",
+    },
     footer: {
       title: "APELSI - Dedicated Technical Portfolio Showcase",
       sub: lang === "id"
@@ -302,6 +322,7 @@ export default function SinglePagePortfolio() {
             <a href="#engineering" className="hover:text-indigo-500 transition-colors">{t.nav.engineering}</a>
             <a href="#impact" className="hover:text-indigo-500 transition-colors">{t.nav.impact}</a>
             <a href="#screenshots" className="hover:text-indigo-500 transition-colors">{t.nav.screenshots}</a>
+            <a href="#contact" className="hover:text-indigo-500 transition-colors">{t.nav.contact}</a>
           </nav>
 
           <div className="flex items-center gap-2.5">
@@ -335,14 +356,6 @@ export default function SinglePagePortfolio() {
                 🇬🇧 EN
               </button>
             </div>
-
-            <Button
-              onClick={() => setIsDemoModalOpen(true)}
-              className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white shadow-md shadow-indigo-500/20 font-semibold text-xs px-3.5 py-1.5 rounded-xl transition-all duration-300 transform hover:scale-105"
-            >
-              <ExternalLink className="w-3.5 h-3.5 mr-1.5" />
-              {t.nav.tryDemo}
-            </Button>
           </div>
         </div>
       </header>
@@ -978,6 +991,54 @@ export default function SinglePagePortfolio() {
         </div>
       </section>
 
+      {/* 8. CALL TO ACTION & CONTACT SECTION */}
+      <section id="contact" className={`py-20 border-t relative overflow-hidden ${isDark ? "bg-slate-900/80 border-slate-800" : "bg-gradient-to-b from-slate-100 to-indigo-50/40 border-slate-200"
+        }`}>
+        <div className="max-w-5xl mx-auto px-4 text-center relative z-10">
+          <div className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border text-xs font-medium mb-6 ${isDark ? "bg-indigo-950/80 border-indigo-500/30 text-indigo-300" : "bg-indigo-100 border-indigo-200 text-indigo-800"
+            }`}>
+            <Mail className="w-3.5 h-3.5 text-indigo-500" />
+            <span>{t.contact.tag}</span>
+          </div>
+
+          <h3 className={`text-3xl sm:text-5xl font-extrabold mb-4 tracking-tight leading-tight ${isDark ? "text-white" : "text-slate-900"
+            }`}>
+            {t.contact.title}
+          </h3>
+
+          <p className={`text-sm sm:text-base max-w-2xl mx-auto leading-relaxed mb-10 ${isDark ? "text-slate-300" : "text-slate-600"
+            }`}>
+            {t.contact.sub}
+          </p>
+
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <a href={`mailto:${contactEmail}`}>
+              <Button size="lg" className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold px-7 py-6 rounded-2xl shadow-lg shadow-indigo-500/25 text-sm flex items-center gap-2 transition-all hover:scale-105">
+                <Mail className="w-4 h-4" />
+                <span>{t.contact.btnEmail}</span>
+              </Button>
+            </a>
+
+            <a href={contactWhatsapp} target="_blank" rel="noopener noreferrer">
+              <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-7 py-6 rounded-2xl shadow-lg shadow-emerald-600/25 text-sm flex items-center gap-2 transition-all hover:scale-105">
+                <SiWhatsapp className="w-4 h-4" />
+                <span>{t.contact.btnWhatsapp}</span>
+              </Button>
+            </a>
+
+            <a href={contactLinkedin} target="_blank" rel="noopener noreferrer">
+              <Button size="lg" variant="outline" className={`font-bold px-7 py-6 rounded-2xl text-sm border flex items-center gap-2 transition-all hover:scale-105 ${isDark
+                ? "border-slate-700 bg-slate-900 text-slate-200 hover:bg-slate-800"
+                : "border-slate-300 bg-white text-slate-800 hover:bg-slate-100 shadow-sm"
+                }`}>
+                <Linkedin className="w-4 h-4 text-blue-500" />
+                <span>{t.contact.btnLinkedin}</span>
+              </Button>
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* FOOTER & CTA */}
       <footer className={`py-16 border-t text-xs ${isDark ? "bg-slate-950 border-slate-800 text-slate-400" : "bg-slate-100 border-slate-200 text-slate-600"
         }`}>
@@ -1013,6 +1074,33 @@ export default function SinglePagePortfolio() {
         onClose={() => setIsDemoModalOpen(false)}
         lang={lang}
       />
+
+      {/* FLOATING CALL TO ACTION BAR */}
+      <div className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-50 flex items-center gap-2.5">
+        {/* Floating WhatsApp Action */}
+        <a
+          href={contactWhatsapp}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group relative flex items-center justify-center w-12 h-12 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white shadow-xl shadow-emerald-600/30 transition-all duration-300 transform hover:scale-110"
+          title={lang === "id" ? "Hubungi via WhatsApp" : "Chat on WhatsApp"}
+        >
+          <span className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-emerald-400 border-2 border-slate-900 rounded-full animate-pulse" />
+          <SiWhatsapp className="w-5 h-5" />
+          <span className="absolute right-14 whitespace-nowrap bg-slate-900 text-white text-xs font-semibold px-3 py-1.5 rounded-xl shadow-lg border border-slate-800 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none hidden sm:block">
+            {lang === "id" ? "Chat WhatsApp" : "WhatsApp Chat"}
+          </span>
+        </a>
+
+        {/* Floating Demo App Launcher */}
+        <Button
+          onClick={() => setIsDemoModalOpen(true)}
+          className="bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-700 hover:from-indigo-500 hover:to-purple-500 text-white font-bold text-xs sm:text-sm px-4 sm:px-5 py-3 rounded-full shadow-2xl shadow-indigo-600/40 border border-indigo-400/30 flex items-center gap-2 transition-all duration-300 transform hover:scale-105"
+        >
+          <ExternalLink className="w-4 h-4 animate-bounce" />
+          <span>{lang === "id" ? "Coba Demo Live" : "Try Live Demo"}</span>
+        </Button>
+      </div>
     </div>
   );
 }
